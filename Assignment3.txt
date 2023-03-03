@@ -1,0 +1,175 @@
+
+1. Write a program containing a possible exception. Use a try block to throw it and a catch block 
+to handle it promptly.
+
+
+Program :-
+
+package Day3;
+import java.util.*;
+public class Program1 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Positive Integer: ");
+		int A = sc.nextInt();
+                                      sc.close();
+	    
+		try {
+			if (A<=0) {
+				throw new Exception("The Number must be POSITIVE");
+			}
+			System.out.println("You are doing great.");
+		}
+		catch(Exception e) {
+			System.out.println("Error: "+ e.getMessage());
+		}
+	}
+}
+
+Output -    Enter Positive Integer:                    Enter Positive Integer: 
+                  25                                                     -234
+                  You are doing great.                        Error: The Number must be POSITIVE
+
+
+2. Write a program that illustrates the application of multiple catch statements.
+
+
+Program :- 
+
+package Day3;
+import java.util.*;
+public class Program2 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number.: ");
+		try {
+			int number = sc.nextInt();
+			float result = 100/number;
+			System.out.println("Result: "+result);
+			sc.close();
+		}
+		catch(Exception e) {
+			System.out.println("Something went wrong.");
+			System.out.println("Completed");
+		}
+	}
+
+}
+
+Output -     Enter a number.:                 Enter a number.: 0               Enter a number.:
+                   20                                        Error: / by zero                    knk
+                   Result: 5.0                          Not Divisible                       Something went wrong.
+
+
+
+3. Write a program that demonstrates how certain exception types are not allowed to be thrown.
+
+
+Program :-
+
+package Day3;
+
+public class Program3 extends Exception{
+	public Program3 (String A) {
+		super(A);
+	}
+	public static int add(int x,int y) throws Exception{
+		if(x==y) {
+			throw new Program3("Not_Allowed");
+		}
+		else {
+			return(x+y);
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			System.out.println(add(10,10));
+		}
+		catch(Exception e) {
+		System.out.println(e);
+		}
+	}
+
+}
+
+Output - Day3.Program3: Not_Allowed
+
+
+4. Write a program to demonstrate the concept of re-throwing an exception.
+
+
+Program :-
+
+package Day3;
+
+public class Program4 {
+
+	public static void main(String[] args) {
+		try {
+			int result = 50/0;
+			System.out.println("Result: "+ result);
+		}
+		catch(ArithmeticException e) {
+			System.out.println("Error: "+ e.getMessage());
+			System.out.println("Not Divisible");
+		}
+		divide(20,0);
+	}
+	public static int divide(int number1,int number2) throws ArithmeticException {
+		try {
+			return(number1/number2);
+		}
+		catch(ArithmeticException e) {
+			System.out.println("Something went wrong"+ e.getMessage());
+			System.out.println("Not Defined");
+		}
+		return(0);
+	}
+}
+
+Output -   Error: / by zero
+                 Not Divisible
+                 Something went wrong/ by zero
+                 Not Defined
+
+
+
+5. You will be given two integers and as input, you have to compute x/y. If x and y are not 32 bit 
+signed integers or if y is zero, exception will occur and you have to report it. Read sample 
+Input/Output to know what to report in case of exceptions.
+
+
+Program :-
+
+package Day3;
+
+import java.util.*;
+
+public class Program5 {
+
+	public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+		
+		try {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+		    System.out.println(a/b);
+	}
+		catch(InputMismatchException e) {
+			System.out.println(e.getClass().toString().replaceFirst("class ", ""));
+			
+		}
+		catch(ArithmeticException e) {
+			System.out.println(e);
+		}
+		sc.close();
+	
+    }
+}
+
+Output -  235          45                                                                         5423
+                5               0                                                                           shdjfh
+                47             java.lang.ArithmeticException: / by zero           java.util.InputMismatchException
